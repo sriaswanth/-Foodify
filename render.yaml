@@ -1,12 +1,16 @@
 services:
-  # Backend Web Service
+  # Backend Web Service - Explicitly set to FREE plan
   - type: web
     name: foodify-backend
     runtime: node
+    plan: free # Force Free Tier to avoid paywall
+    region: singapore
     rootDir: backend
     buildCommand: npm install
     startCommand: npm start
     envVars:
+      - key: NODE_VERSION
+        value: 20
       - key: MONGO_URI
         sync: false
       - key: JWT_SECRET
@@ -14,13 +18,15 @@ services:
       - key: PORT
         value: 10000
 
-  # Frontend Static Site (Corrected for Render Blueprint spec)
+  # Frontend Static Site - Corrected for Free Tier Blueprint spec
   - type: web
     name: foodify-frontend
-    runtime: static
+    runtime: static # Uses the static runtime for free hosting on CDN
+    # No 'plan' field needed for static runtime as it is always free
+    region: singapore
     rootDir: frontend
     buildCommand: npm install && npm run build
-    staticPublishPath: dist
+    staticPublishPath: ./dist
     envVars:
       - key: VITE_API_URL
         fromService:
