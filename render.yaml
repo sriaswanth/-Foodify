@@ -4,7 +4,8 @@ services:
     name: foodify-backend
     env: node
     plan: free
-    region: singapore # Change to your preferred region
+    region: singapore
+    rootDir: backend # Point to the backend folder
     buildCommand: npm install
     startCommand: npm start
     envVars:
@@ -23,6 +24,7 @@ services:
     env: static
     plan: free
     region: singapore
+    rootDir: frontend # Point to the frontend folder
     buildCommand: npm install && npm run build
     publishDir: dist
     envVars:
