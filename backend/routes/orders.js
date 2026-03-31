@@ -77,7 +77,8 @@ router.get('/', authMiddleware, async (req, res) => {
         const orders = await Order.find({ user: req.user.id }).sort({ createdAt: -1 }).populate('items.menuItem');
         res.json(orders);
     } catch (err) {
-        res.status(500).json({ error: 'Internal server error' });
+        console.error('Fetch Orders Failure:', err);
+        res.status(500).json({ error: 'Internal server error while fetching orders', details: err.message });
     }
 });
 
