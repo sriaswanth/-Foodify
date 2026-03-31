@@ -16,7 +16,8 @@ export const AppProvider = ({ children }) => {
         }
     }, [token]);
 
-    const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    const rawApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    const API_BASE = rawApiUrl.startsWith('http') ? rawApiUrl : `https://${rawApiUrl}`;
 
     const refreshUser = async () => {
         if (!token) return;
