@@ -10,7 +10,8 @@ const Favorites = () => {
 
     useEffect(() => {
         // We fetch all menu items and then filter by favorites in the frontend
-        const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        const rawApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        const API_BASE = rawApiUrl.startsWith('http') ? rawApiUrl : `https://${rawApiUrl}`;
         fetch(`${API_BASE}/api/menu`)
             .then(res => res.json())
             .then(data => {
