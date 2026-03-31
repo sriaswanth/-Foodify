@@ -7,7 +7,8 @@ router.get('/', async (req, res) => {
         const menus = await Menu.find({});
         res.json(menus);
     } catch (err) {
-        res.status(500).json({ error: 'Internal server error' });
+        console.error('Menu Fetch Failure:', err);
+        res.status(500).json({ error: 'Internal server error while fetching menu', details: err.message });
     }
 });
 
