@@ -2,15 +2,11 @@ services:
   # Backend Web Service
   - type: web
     name: foodify-backend
-    env: node
-    plan: free
-    region: singapore
-    rootDir: backend # Point to the backend folder
+    runtime: node
+    rootDir: backend
     buildCommand: npm install
     startCommand: npm start
     envVars:
-      - key: NODE_VERSION
-        value: 20
       - key: MONGO_URI
         sync: false
       - key: JWT_SECRET
@@ -19,21 +15,17 @@ services:
         value: 10000
 
   # Frontend Static Site
-  - type: web
+  - type: static
     name: foodify-frontend
-    env: static
-    plan: free
-    region: singapore
-    rootDir: frontend # Point to the frontend folder
+    rootDir: frontend
     buildCommand: npm install && npm run build
-    staticPublishDir: dist
+    publishPath: dist
     envVars:
       - key: VITE_API_URL
         fromService:
           type: web
           name: foodify-backend
           property: host
-    # Standard React router handling for SPAs
     routes:
       - type: rewrite
         source: /*
