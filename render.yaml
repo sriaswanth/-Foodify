@@ -19,7 +19,7 @@ services:
         value: 10000
 
   # Frontend Static Site
-  - type: static_site
+  - type: web
     name: foodify-frontend
     env: static
     plan: free
