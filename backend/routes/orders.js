@@ -66,8 +66,8 @@ router.post('/', authMiddleware, async (req, res) => {
             newWalletBalance: updatedUser?.walletBalance || 0
         });
     } catch (err) {
-        console.error('Error in POST /orders:', err);
-        res.status(500).json({ error: 'Internal server error while placing order' });
+        console.error('Order Placement Failure:', err);
+        res.status(500).json({ error: 'Internal server error while placing order', message: err.message });
     }
 });
 

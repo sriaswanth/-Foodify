@@ -89,8 +89,13 @@ const runSeeder = async () => {
         await Menu.insertMany(documents);
         console.log(`\nSuccessfully seeded ${documents.length} unique dishes with restaurant names.`);
     }
-
-    mongoose.connection.close();
 };
 
-runSeeder();
+module.exports = runSeeder;
+
+if (require.main === module) {
+    runSeeder().then(() => {
+        console.log('Seeding complete.');
+        mongoose.connection.close();
+    });
+}
