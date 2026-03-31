@@ -14,12 +14,13 @@ services:
       - key: PORT
         value: 10000
 
-  # Frontend Static Site
-  - type: static
+  # Frontend Static Site (Corrected for Render Blueprint spec)
+  - type: web
     name: foodify-frontend
+    runtime: static
     rootDir: frontend
     buildCommand: npm install && npm run build
-    publishPath: dist
+    staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
         fromService:
