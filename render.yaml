@@ -23,7 +23,6 @@ services:
     name: foodify-frontend
     runtime: static # Uses the static runtime for free hosting on CDN
     # No 'plan' field needed for static runtime as it is always free
-    region: singapore
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
