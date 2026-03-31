@@ -28,10 +28,7 @@ services:
     staticPublishPath: ./dist
     envVars:
       - key: VITE_API_URL
-        fromService:
-          type: web
-          name: foodify-backend
-          property: host
+        value: https://foodify-backend-dnt2.onrender.com
     routes:
       - type: rewrite
         source: /*
